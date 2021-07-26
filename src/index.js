@@ -114,6 +114,7 @@ function MindElixir({
   primaryNodeHorizontalGap,
   primaryNodeVerticalGap,
   mobileMenu,
+  customFullscreenTrigger,
 }) {
   vari.newTopicName = newTopicName;
   this.mindElixirBox = document.querySelector(el);
@@ -145,6 +146,7 @@ function MindElixir({
   this.overflowHidden = overflowHidden;
   this.primaryNodeHorizontalGap = primaryNodeHorizontalGap;
   this.primaryNodeVerticalGap = primaryNodeVerticalGap;
+  this.customFullscreenTrigger = customFullscreenTrigger;
 
   this.isUndo = false;
   this.bus.addListener("operation", operation => {

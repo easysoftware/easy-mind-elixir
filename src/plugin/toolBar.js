@@ -22,7 +22,11 @@ function createToolBarRBContainer(mind) {
   // toolBarRBContainer.appendChild(percentage)
   toolBarRBContainer.className = "rb";
   fc.onclick = () => {
-    mind.container.requestFullscreen();
+    if (mind.customFullscreenTrigger) {
+      mind.customFullscreenTrigger();
+    } else {
+      mind.container.requestFullscreen();
+    }
   };
   gc.onclick = () => {
     mind.toCenter();
