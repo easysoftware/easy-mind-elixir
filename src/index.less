@@ -40,6 +40,12 @@
       outline: 2px solid #4dc4ff;
     }
 
+    tpc {
+      & > a:not(:hover) {
+        color: inherit;
+      }
+    }
+
     root {
       position: absolute;
 
@@ -88,10 +94,6 @@
           z-index: 11;
           direction: ltr;
           -webkit-user-select: auto;
-        }
-
-        & > a:not(:hover) {
-          color: inherit;
         }
       }
     }
