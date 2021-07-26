@@ -129,16 +129,6 @@ export default function linkDiv(primaryNode) {
         currentOffsetR += elOffsetH + primaryNodeVerticalGap;
       }
     }
-    // set position of expander
-    let expander = el.children[0].children[1];
-    if (expander) {
-      expander.style.top = (expander.parentNode.offsetHeight - expander.offsetHeight) / 2 + "px";
-      if (el.className === "lhs") {
-        expander.style.left = -10 + "px";
-      } else {
-        expander.style.left = expander.parentNode.offsetWidth - 10 + "px";
-      }
-    }
   }
   this.svg2nd.appendChild(createMainPath(path));
 
@@ -233,12 +223,6 @@ export default function linkDiv(primaryNode) {
 
           let expander = childT.children[1];
           if (expander) {
-            expander.style.top = (childT.offsetHeight - expander.offsetHeight) / 2 + "px";
-            if (direction === "lhs") {
-              expander.style.left = -10 + "px";
-            } else if (direction === "rhs") {
-              expander.style.left = childT.offsetWidth - 10 + "px";
-            }
             // this property is added in the layout phase
             if (!expander.expanded) continue;
           } else {
