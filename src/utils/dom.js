@@ -55,11 +55,25 @@ export let createTop = function (nodeObj) {
 export let createTopic = function (nodeObj) {
   let topic = $d.createElement("tpc");
   topic.nodeObj = nodeObj;
-  topic.innerHTML = nodeObj.topic;
+  topic.innerHTML = getNodeInnerHtml(nodeObj);
   topic.dataset.nodeid = "me" + nodeObj.id;
   topic.draggable = vari.mevar_draggable;
   return topic;
 };
+
+function getNodeInnerHtml(nodeObj) {
+  const nodeText = nodeObj.topic;
+  const nodeLink = nodeObj.link;
+  const nodeDescription = nodeObj.description;
+  const nodeLinkHtml = nodeLink ? `<a class="icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}"></a>` : null;
+  const nodeDescriptionHtml = nodeDescription ? `<span class="icon-file-document"  title="${nodeDescription}"></span>` : null;
+
+  let nodeInnerHtml = nodeText;
+  if (nodeLinkHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeLinkHtml}`;
+  if (nodeDescriptionHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeDescriptionHtml}`;
+
+  return nodeInnerHtml;
+}
 
 export function selectText(div) {
   if ($d.selection) {
