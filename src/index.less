@@ -76,24 +76,31 @@
       // for primary node
       position: absolute;
 
-      & > t > tpc {
-        background-color: rgb(255, 255, 255);
-        border: 1px solid rgb(68, 68, 68);
-        border-radius: 5px;
-        color: rgb(115, 92, 69);
-        padding: 8px 10px;
-        margin: 0;
-
-        [contentEditable] {
-          position: absolute;
-          top: 0;
-          left: 0;
-          background-color: #fff;
-          max-width: 300px;
+      & > t {
+        & > tpc {
+          background-color: rgb(255, 255, 255);
+          border: 1px solid rgb(68, 68, 68);
+          border-radius: 5px;
+          color: rgb(115, 92, 69);
           padding: 8px 10px;
-          z-index: 11;
-          direction: ltr;
-          -webkit-user-select: auto;
+          margin: 0;
+
+          [contentEditable] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: #fff;
+            max-width: 300px;
+            padding: 8px 10px;
+            z-index: 11;
+            direction: ltr;
+            -webkit-user-select: auto;
+          }
+        }
+      
+        & > epd {
+          right: 7px;
+          top: 50%;
         }
       }
     }
@@ -184,7 +191,7 @@
         .show {
           background: #7ad5ff;
           pointer-events: none; // 不加会识别为不可移动
-          opacity: .7
+          opacity: 0.7;
         }
 
         .in {
@@ -209,15 +216,9 @@
         background-color: #fff;
         pointer-events: all;
         z-index: 9;
-
-        &.minus {
-          transition: all 0.3s;
-          opacity: 0;
-
-          &:hover {
-            opacity: 1;
-          }
-        }
+        right: -7px;
+        top: 100%;
+        transform: translateY(-50%);
       }
     }
   }
