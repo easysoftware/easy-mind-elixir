@@ -64,13 +64,15 @@ export let createTopic = function (nodeObj) {
 function getNodeInnerHtml(nodeObj) {
   const nodeText = nodeObj.topic;
   const nodeLink = nodeObj.link;
+  const nodeTaskId = nodeObj.taskId;
   const nodeDescription = nodeObj.description;
-  const nodeLinkHtml = nodeLink ? `<a class="icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}"></a>` : null;
-  const nodeDescriptionHtml = nodeDescription ? `<span class="icon-file-document"  title="${nodeDescription}"></span>` : null;
-
+  const nodeLinkHtml = nodeLink ? `<a class="attachment icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}" data-name="link" data-value="${nodeLink}"></a>` : null;
+  const nodeDescriptionHtml = nodeDescription ? `<span class="attachment icon-file-document"  title="${nodeDescription}" data-name="description" data-value="${nodeDescription}"></span>` : null;
+  const nodeTaskHtml = nodeTaskId ? `<a class="attachment icon-tracker" href="" title="Task id: ${nodeTaskId}" data-name="taskId" data-value="${nodeTaskId}"></a>` : null;
   let nodeInnerHtml = nodeText;
   if (nodeLinkHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeLinkHtml}`;
   if (nodeDescriptionHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeDescriptionHtml}`;
+  if (nodeTaskHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeTaskHtml}`;
 
   return nodeInnerHtml;
 }
