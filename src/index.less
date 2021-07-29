@@ -97,10 +97,33 @@
             -webkit-user-select: auto;
           }
         }
-      
+
         & > epd {
-          right: 7px;
           top: 50%;
+        }
+      }
+
+      &.rhs {
+        & > t > epd {
+        right: 7px;
+        }
+
+        & > children {
+          epd {
+            right: -7px;
+          }
+        }
+      }
+
+      &.lhs {
+        & > t > epd {
+          left: 7px;
+        }
+
+        & > children {
+          epd {
+            left: -7px;
+          }
         }
       }
     }
@@ -216,7 +239,6 @@
         background-color: #fff;
         pointer-events: all;
         z-index: 9;
-        right: -7px;
         top: 100%;
         transform: translateY(-50%);
       }
