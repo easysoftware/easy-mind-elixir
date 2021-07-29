@@ -1,20 +1,26 @@
-let createButton = (id, name) => {
+let createButton = (id, name, native = true) => {
   let button = document.createElement("span");
   button.id = id;
-  button.innerHTML = `<svg class='icon' aria-hidden='true'>
+  if (native) {
+    button.innerHTML = `<svg class='icon' aria-hidden='true'>
     <use xlink:href='#icon-${name}'></use>
   </svg>`;
+    return button;
+  }
+  button.innerHTML = `<span class='icon-${name}'></span>`;
   return button;
 };
 
 function createToolBarRBContainer(mind) {
   let toolBarRBContainer = document.createElement("toolbar");
+  let ex = createButton("export", "print", false);
   let fc = createButton("fullscreen", "full");
   let gc = createButton("toCenter", "living");
   let zo = createButton("zoomout", "move");
   let zi = createButton("zoomin", "add");
   let percentage = document.createElement("span");
   percentage.innerHTML = "100%";
+  toolBarRBContainer.appendChild(ex);
   toolBarRBContainer.appendChild(fc);
   toolBarRBContainer.appendChild(gc);
   toolBarRBContainer.appendChild(zo);
@@ -38,6 +44,9 @@ function createToolBarRBContainer(mind) {
   zi.onclick = () => {
     if (mind.scaleVal > 1.6) return;
     mind.scale((mind.scaleVal += 0.2));
+  };
+  ex.onclick = () => {
+    mind.bus.fire("export")
   };
   return toolBarRBContainer;
 }
