@@ -217,19 +217,23 @@ function customLinkTransform() {
   return resLinks;
 }
 
-export let exportSvg = function (instance, fileName) {
+export let exportSvg = function (instance, fileName, download = true) {
   if (!instance) throw new Error("Mind-elixir instance is not presented. ---> exportSvg(instance, fileName)");
   initVar();
   $d = instance.container;
   let svgFile = generateSvgDom();
-  let dlUrl = URL.createObjectURL(new Blob([head + svgFile.outerHTML.replace(/&nbsp;/g, " ")]));
-  let a = document.createElement("a");
-  a.href = dlUrl;
-  a.download = (fileName || getFileName()) + ".svg";
-  a.click();
+  if(download) {
+    let dlUrl = URL.createObjectURL(new Blob([head + svgFile.outerHTML.replace(/&nbsp;/g, " ")]));
+    let a = document.createElement("a");
+    a.href = dlUrl;
+    a.download = (fileName || getFileName()) + ".svg";
+    a.click();
+  } else {
+    return svgFile;
+  }
 };
 
-export let exportPng = async function (instance, fileName) {
+export let exportImage = async function (instance, fileName, imageType = "png", download = true) {
   if (!instance) throw new Error("Mind-elixir instance is not presented. ---> exportSvg(instance, fileName)");
   initVar();
   $d = instance.container;
@@ -240,14 +244,18 @@ export let exportPng = async function (instance, fileName) {
 
   let v = await Canvg.fromString(ctx, head + svgFile.outerHTML.replace(/&nbsp;/g, " "));
   v.start();
-  let imgURL = canvas.toDataURL("image/png");
-  let a = document.createElement("a");
-  a.href = imgURL;
-  a.download = fileName || getFileName() + ".png";
-  a.click();
+  let imgURL = canvas.toDataURL(`image/${imageType}`);
+  if (download) {
+    let a = document.createElement("a");
+    a.href = imgURL;
+    a.download = fileName || getFileName() + `.${imageType}`;
+    a.click();
+  } else {
+    return imgURL;
+  }
 };
 
 export default {
   exportSvg,
-  exportPng,
+  exportImage
 };
