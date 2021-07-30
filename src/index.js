@@ -115,6 +115,7 @@ function MindElixir({
   primaryNodeVerticalGap,
   mobileMenu,
   customFullscreenTrigger,
+  clickOnAttachment
 }) {
   vari.newTopicName = newTopicName;
   this.mindElixirBox = document.querySelector(el);
@@ -147,6 +148,7 @@ function MindElixir({
   this.primaryNodeHorizontalGap = primaryNodeHorizontalGap;
   this.primaryNodeVerticalGap = primaryNodeVerticalGap;
   this.customFullscreenTrigger = customFullscreenTrigger;
+  this.clickOnAttachment = clickOnAttachment;
 
   this.isUndo = false;
   this.bus.addListener("operation", operation => {
