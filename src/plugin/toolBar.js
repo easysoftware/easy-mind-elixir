@@ -11,9 +11,16 @@ let createButton = (id, name, native = true) => {
   return button;
 };
 
+let createSeparator = () => {
+  let separator = document.createElement("span");
+  separator.classList.add("toolbar-vertical-separator")
+  return separator;
+};
+
 function createToolBarRBContainer(mind) {
   let toolBarRBContainer = document.createElement("toolbar");
   let ex = createButton("export", "print", false);
+  let li = createSeparator();
   let fc = createButton("fullscreen", "full");
   let gc = createButton("toCenter", "living");
   let zo = createButton("zoomout", "move");
@@ -21,6 +28,7 @@ function createToolBarRBContainer(mind) {
   let percentage = document.createElement("span");
   percentage.innerHTML = "100%";
   toolBarRBContainer.appendChild(ex);
+  toolBarRBContainer.appendChild(li);
   toolBarRBContainer.appendChild(fc);
   toolBarRBContainer.appendChild(gc);
   toolBarRBContainer.appendChild(zo);
