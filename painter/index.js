@@ -128,6 +128,7 @@ function RootToSvg() {
 
 /**
  * Sets svg attributes of node for export
+ * @param {HTMLCollection} primaryNode - A html collection of a node
  * @param {Number} offset - corrective adjustment of horizonal position
  */
 function PrimaryToSvg(primaryNode, offset = 0) {
@@ -301,7 +302,7 @@ export let exportImage = async function (instance, fileName, imageType = "png", 
 /**
  * Prepares two arrays. First array depths of left mm branches, second includes
  * all branches.
- * @param {Number} mm - mind map instance
+ * @param {Object} mm - mind map elixir instance
  */
 let getOffsetData = function (mm) {
   const primaryNodesData = mm.getAllData().nodeData.children;
