@@ -1,7 +1,7 @@
 import Canvg from "canvg";
 
 let IMG_PADDING = 40;
-const NODE_GROUP_WIDTH = 108;
+const NODE_GROUP_WIDTH = 108.645;
 let $d = document;
 // calculate distances to center from top,left,bottom,right
 
