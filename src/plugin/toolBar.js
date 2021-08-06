@@ -19,16 +19,20 @@ let createSeparator = () => {
 
 function createToolBarRBContainer(mind) {
   let toolBarRBContainer = document.createElement("toolbar");
+  let hi = createButton("hint", "question", false);
+  let li2 = createSeparator();
   let ex = createButton("export", "print", false);
-  let li = createSeparator();
+  let li1 = createSeparator();
   let fc = createButton("fullscreen", "full");
   let gc = createButton("toCenter", "living");
   let zo = createButton("zoomout", "move");
   let zi = createButton("zoomin", "add");
   let percentage = document.createElement("span");
   percentage.innerHTML = "100%";
+  toolBarRBContainer.appendChild(hi);
+  toolBarRBContainer.appendChild(li2);
   toolBarRBContainer.appendChild(ex);
-  toolBarRBContainer.appendChild(li);
+  toolBarRBContainer.appendChild(li1);
   toolBarRBContainer.appendChild(fc);
   toolBarRBContainer.appendChild(gc);
   toolBarRBContainer.appendChild(zo);
@@ -55,6 +59,9 @@ function createToolBarRBContainer(mind) {
   };
   ex.onclick = () => {
     mind.bus.fire("export")
+  };
+  hi.onclick = () => {
+    mind.bus.fire("hint")
   };
   return toolBarRBContainer;
 }
