@@ -181,6 +181,7 @@ export let getAllDataMd = function() {
  * @memberof MapInteraction
  */
 export let enableEdit = function() {
+  this.container.classList.remove("locked");
   removeToolBarLockContainer(this);
   this.editable = true;
 };
@@ -192,6 +193,7 @@ export let enableEdit = function() {
  * @memberof MapInteraction
  */
 export let disableEdit = function() {
+  this.container.classList.add("locked");
   addToolBarLockContainer(this);
   this.editable = false;
 };

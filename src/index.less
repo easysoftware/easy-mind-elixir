@@ -18,6 +18,22 @@
     height: 0px;
   }
 
+  &.locked {
+    .map-box {
+      t {
+        cursor: default;
+
+        tpc {
+          -webkit-user-drag: none;
+          -khtml-user-drag: none;
+          -moz-user-drag: none;
+          -o-user-drag: none;
+          user-drag: none;
+        }
+      }
+    }
+  }
+
   .focus-mode {
     position: absolute;
     top: 0;
@@ -105,7 +121,7 @@
 
       &.rhs {
         & > t > epd {
-        right: 7px;
+          right: 7px;
         }
 
         & > children {

@@ -321,7 +321,9 @@ MindElixir.prototype = {
 
     this.container = $d.createElement("div"); // map container
     this.container.className = "map-container";
-
+    if (!this.editable) {
+      this.container.classList.add("locked");
+    }
     if (this.overflowHidden) this.container.style.overflow = "hidden";
 
     this.map = $d.createElement("div"); // map-canvas Element
