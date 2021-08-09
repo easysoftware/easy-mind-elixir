@@ -68,6 +68,7 @@ function getNodeInnerHtml(nodeObj) {
   const nodeDescription = nodeObj.description;
   const nodeLinkHtml = nodeLink ? `<a class="attachment icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}" data-name="link" data-value="${nodeLink}"></a>` : null;
   const nodeDescriptionHtml = nodeDescription ? `<span class="attachment icon-file-document"  title="${nodeDescription}" data-name="description" data-value="${nodeDescription}"></span>` : null;
+  //TODO locales
   const nodeIssueHtml = nodeIssueId ? `<a class="attachment icon-tracker" href="" title="Task id: ${nodeIssueId}" data-name="issueId" data-value="${nodeIssueId}"></a>` : null;
   let nodeInnerHtml = nodeText;
   if (nodeLinkHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeLinkHtml}`;

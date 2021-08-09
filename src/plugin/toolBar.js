@@ -108,6 +108,7 @@ export function removeToolBarLockContainer(mind) {
 function createToolBarLockContainer() {
   let toolBarLockContainer = document.createElement("toolbar");
   let lockIconEl = createIcon("lock");
+  //TODO locales
   lockIconEl.title = "Mind map is locked by another user";
   toolBarLockContainer.className = "rt-lock";
   toolBarLockContainer.appendChild(lockIconEl);
