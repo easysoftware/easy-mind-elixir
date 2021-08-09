@@ -33,6 +33,7 @@ export default function (mind) {
   let bgOrFont;
   let styleDiv = createDiv("nm-style", "style");
   let tagDiv = createDiv("nm-tag", "tag");
+  // icons removed based on https://es.easyproject.com/issues/518343
   //let iconDiv = createDiv("nm-icon", "icon");
 
   styleDiv.innerHTML = `
@@ -63,6 +64,7 @@ export default function (mind) {
   tagDiv.innerHTML = `
       ${i18n[locale].tag}<input class="nm-tag" tabindex="-1" placeholder="${i18n[locale].tagsSeparate}" /><br>
   `;
+  // icons removed based on https://es.easyproject.com/issues/518343
   //iconDiv.innerHTML = `
   //    ${i18n[locale].icon}<input class="nm-icon" tabindex="-1" placeholder="${i18n[locale].iconsSeparate}" /><br>
   //`;
@@ -75,6 +77,7 @@ export default function (mind) {
   `;
   menuContainer.appendChild(styleDiv);
   menuContainer.appendChild(tagDiv);
+  // icons removed based on https://es.easyproject.com/issues/518343
   //menuContainer.appendChild(iconDiv);
   menuContainer.hidden = true;
 
@@ -91,6 +94,7 @@ export default function (mind) {
   let buttonContainer = menuContainer.querySelector(".button-container");
   let fontBtn = menuContainer.querySelector(".font");
   let tagInput = mind.container.querySelector(".nm-tag");
+  // icons removed based on https://es.easyproject.com/issues/518343
   //let iconInput = mind.container.querySelector(".nm-icon");
   menuContainer.onclick = e => {
     if (!mind.currentNode) return;
@@ -155,6 +159,7 @@ export default function (mind) {
     }
     mind.updateNodeTags(mind.currentNode.nodeObj);
   };
+  // icons removed based on https://es.easyproject.com/issues/518343
   //iconInput.onchange = e => {
   //  if (!mind.currentNode) return;
   //  mind.currentNode.nodeObj.icons = e.target.value.split(",");
@@ -201,6 +206,7 @@ export default function (mind) {
     } else {
       tagInput.value = "";
     }
+    // icons removed based on https://es.easyproject.com/issues/518343
     //if (nodeObj.icons) {
     //  iconInput.value = nodeObj.icons.join(",");
     //} else {
