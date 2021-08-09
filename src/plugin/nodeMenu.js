@@ -6,7 +6,7 @@ const createDiv = (id, name) => {
   div.innerHTML = `<span>${name}</span>`;
   return div;
 };
-
+// add few easy colors here
 const colorList = [
   "#2c3e50",
   "#34495e",
@@ -33,7 +33,8 @@ export default function (mind) {
   let bgOrFont;
   let styleDiv = createDiv("nm-style", "style");
   let tagDiv = createDiv("nm-tag", "tag");
-  let iconDiv = createDiv("nm-icon", "icon");
+  // icons removed based on https://es.easyproject.com/issues/518343
+  //let iconDiv = createDiv("nm-icon", "icon");
 
   styleDiv.innerHTML = `
       <div class="nm-fontsize-container">
@@ -63,9 +64,10 @@ export default function (mind) {
   tagDiv.innerHTML = `
       ${i18n[locale].tag}<input class="nm-tag" tabindex="-1" placeholder="${i18n[locale].tagsSeparate}" /><br>
   `;
-  iconDiv.innerHTML = `
-      ${i18n[locale].icon}<input class="nm-icon" tabindex="-1" placeholder="${i18n[locale].iconsSeparate}" /><br>
-  `;
+  // icons removed based on https://es.easyproject.com/issues/518343
+  //iconDiv.innerHTML = `
+  //    ${i18n[locale].icon}<input class="nm-icon" tabindex="-1" placeholder="${i18n[locale].iconsSeparate}" /><br>
+  //`;
 
   let menuContainer = document.createElement("nmenu");
   menuContainer.innerHTML = `
@@ -75,7 +77,8 @@ export default function (mind) {
   `;
   menuContainer.appendChild(styleDiv);
   menuContainer.appendChild(tagDiv);
-  menuContainer.appendChild(iconDiv);
+  // icons removed based on https://es.easyproject.com/issues/518343
+  //menuContainer.appendChild(iconDiv);
   menuContainer.hidden = true;
 
   function clearSelect(klass, remove) {
@@ -91,7 +94,8 @@ export default function (mind) {
   let buttonContainer = menuContainer.querySelector(".button-container");
   let fontBtn = menuContainer.querySelector(".font");
   let tagInput = mind.container.querySelector(".nm-tag");
-  let iconInput = mind.container.querySelector(".nm-icon");
+  // icons removed based on https://es.easyproject.com/issues/518343
+  //let iconInput = mind.container.querySelector(".nm-icon");
   menuContainer.onclick = e => {
     if (!mind.currentNode) return;
     let nodeObj = mind.currentNode.nodeObj;
@@ -155,11 +159,12 @@ export default function (mind) {
     }
     mind.updateNodeTags(mind.currentNode.nodeObj);
   };
-  iconInput.onchange = e => {
-    if (!mind.currentNode) return;
-    mind.currentNode.nodeObj.icons = e.target.value.split(",");
-    mind.updateNodeIcons(mind.currentNode.nodeObj);
-  };
+  // icons removed based on https://es.easyproject.com/issues/518343
+  //iconInput.onchange = e => {
+  //  if (!mind.currentNode) return;
+  //  mind.currentNode.nodeObj.icons = e.target.value.split(",");
+  //  mind.updateNodeIcons(mind.currentNode.nodeObj);
+  //};
   let state = "open";
   buttonContainer.onclick = e => {
     if (state === "open") {
@@ -201,10 +206,11 @@ export default function (mind) {
     } else {
       tagInput.value = "";
     }
-    if (nodeObj.icons) {
-      iconInput.value = nodeObj.icons.join(",");
-    } else {
-      iconInput.value = "";
-    }
+    // icons removed based on https://es.easyproject.com/issues/518343
+    //if (nodeObj.icons) {
+    //  iconInput.value = nodeObj.icons.join(",");
+    //} else {
+    //  iconInput.value = "";
+    //}
   });
 }
