@@ -1,12 +1,13 @@
 import { dragMoveHelper } from "./utils/index";
 
-export default function (mind) {
+export default function(mind) {
   mind.map.addEventListener("click", e => {
+    if (!mind.editable) return;
     // if (dragMoveHelper.afterMoving) return
-    if (!e.target.className.includes('not-prevent')) e.preventDefault();
-    if (e.target.className.includes('attachment') && mind.clickOnAttachment) {
-      const dataName = e.target.getAttribute('data-name');
-      const dataValue = e.target.getAttribute('data-value');
+    if (!e.target.className.includes("not-prevent")) e.preventDefault();
+    if (e.target.className.includes("attachment") && mind.clickOnAttachment) {
+      const dataName = e.target.getAttribute("data-name");
+      const dataValue = e.target.getAttribute("data-value");
       mind.clickOnAttachment(dataName, dataValue);
     } else if (e.target.nodeName === "EPD") {
       mind.expandNode(e.target.previousSibling);
@@ -38,20 +39,24 @@ export default function (mind) {
   mind.map.addEventListener("mousemove", e => {
     // click trigger mousemove in windows chrome
     // the 'true' is a string
+    if (!mind.editable) return;
     if (e.target.contentEditable !== "true") {
       dragMoveHelper.onMove(e, mind.container);
     }
   });
   mind.map.addEventListener("mousedown", e => {
+    if (!mind.editable) return;
     if (e.target.contentEditable !== "true") {
       dragMoveHelper.afterMoving = false;
       dragMoveHelper.mousedown = true;
     }
   });
   mind.map.addEventListener("mouseleave", e => {
+    if (!mind.editable) return;
     dragMoveHelper.clear();
   });
   mind.map.addEventListener("mouseup", e => {
+    if (!mind.editable) return;
     dragMoveHelper.clear();
   });
 }
