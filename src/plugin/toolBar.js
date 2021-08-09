@@ -7,8 +7,14 @@ let createButton = (id, name, native = true) => {
   </svg>`;
     return button;
   }
-  button.innerHTML = `<span class='icon-${name}'></span>`;
+  button.appendChild(createIcon(name));
   return button;
+};
+
+let createIcon = name => {
+  let iconEl = document.createElement("span");
+  iconEl.classList.add(`icon-${name}`);
+  return iconEl;
 };
 
 let createSeparator = () => {
@@ -88,7 +94,30 @@ function createToolBarLTContainer(mind) {
   return toolBarLTContainer;
 }
 
+export function addToolBarLockContainer(mind) {
+  mind.container.append(createToolBarLockContainer());
+}
+
+export function removeToolBarLockContainer(mind) {
+  const toolBarLockContainers = mind.container.getElementsByClassName("rt-lock");
+  if (toolBarLockContainers && toolBarLockContainers[0]) {
+    mind.container.removeChild(toolBarLockContainers[0]);
+  }
+}
+
+function createToolBarLockContainer() {
+  let toolBarLockContainer = document.createElement("toolbar");
+  let lockIconEl = createIcon("lock");
+  lockIconEl.title = "Mind map is locked by another user";
+  toolBarLockContainer.className = "rt-lock";
+  toolBarLockContainer.appendChild(lockIconEl);
+  return toolBarLockContainer;
+}
+
 export default function(mind) {
   mind.container.append(createToolBarRTContainer(mind));
+  if (!mind.editable) {
+    addToolBarLockContainer(mind);
+  }
   mind.container.append(createToolBarLTContainer(mind));
 }
