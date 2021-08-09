@@ -2,13 +2,14 @@ import { dragMoveHelper } from "./utils/index";
 
 export default function(mind) {
   mind.map.addEventListener("click", e => {
-    if (!mind.editable) return;
     // if (dragMoveHelper.afterMoving) return
     if (!e.target.className.includes("not-prevent")) e.preventDefault();
     if (e.target.className.includes("attachment") && mind.clickOnAttachment) {
       const dataName = e.target.getAttribute("data-name");
       const dataValue = e.target.getAttribute("data-value");
       mind.clickOnAttachment(dataName, dataValue);
+    } else if (!mind.editable) {
+      return;
     } else if (e.target.nodeName === "EPD") {
       mind.expandNode(e.target.previousSibling);
     } else if (e.target.parentElement.nodeName === "T" || e.target.parentElement.nodeName === "ROOT") {
