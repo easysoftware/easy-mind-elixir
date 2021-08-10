@@ -68,7 +68,6 @@ export default function linkDiv(primaryNode) {
     let x2, y2;
     let el = primaryNodeList[i];
     let elOffsetH = el.offsetHeight;
-    let Cy;
     if (el.className === "lhs") {
       el.style.top = base + currentOffsetL + "px";
       el.style.left = 10000 - root.offsetWidth / 2 - primaryNodeHorizontalGap - el.offsetWidth + "px";
@@ -148,7 +147,7 @@ export default function linkDiv(primaryNode) {
       let path = "";
       loopChildren(children, parent, true);
       svg.appendChild(createPath(path));
-
+      // eslint-disable-next-line
       function loopChildren(children, parent, first) {
         // parent node of the child dom
         let parentOT = parent.offsetTop;

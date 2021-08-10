@@ -1,7 +1,7 @@
 import { calcP1, calcP4, dmhelper, generateUUID, getArrowPoints } from "./utils/index";
 import { createSvgGroup } from "./utils/svg";
 // custom link
-export let createLink = function (from, to, isInitPaint, obj) {
+export let createLink = function(from, to, isInitPaint, obj) {
   let map = this.map.getBoundingClientRect();
   if (!from || !to) {
     return; // not expand
@@ -111,7 +111,7 @@ export let createLink = function (from, to, isInitPaint, obj) {
   if (!isInitPaint) this.showLinkController(p2x, p2y, p3x, p3y, newLinkObj, fromData, toData);
 };
 
-export let removeLink = function (linkSvg) {
+export let removeLink = function(linkSvg) {
   let link;
   if (linkSvg) {
     link = linkSvg;
@@ -125,7 +125,7 @@ export let removeLink = function (linkSvg) {
   link.remove();
   link = null;
 };
-export let selectLink = function (targetElement) {
+export let selectLink = function(targetElement) {
   this.currentLink = targetElement;
   let obj = targetElement.linkObj;
   let from = obj.from;
@@ -159,12 +159,12 @@ export let selectLink = function (targetElement) {
 
   this.showLinkController(p2x, p2y, p3x, p3y, obj, fromData, toData);
 };
-export let hideLinkController = function () {
+export let hideLinkController = function() {
   this.linkController.style.display = "none";
   this.P2.style.display = "none";
   this.P3.style.display = "none";
 };
-export let showLinkController = function (p2x, p2y, p3x, p3y, linkObj, fromData, toData) {
+export let showLinkController = function(p2x, p2y, p3x, p3y, linkObj, fromData, toData) {
   this.linkController.style.display = "initial";
   this.P2.style.display = "initial";
   this.P3.style.display = "initial";

@@ -1,4 +1,3 @@
-import info from "../package.json";
 import vari from "./var";
 import { addParentLink, generateUUID, getObjById, isMobile } from "./utils/index";
 import { createInputDiv, findEle, layout } from "./utils/dom";
@@ -24,7 +23,7 @@ import {
   selectPrevSibling,
   setLocale,
   toCenter,
-  unselectNode
+  unselectNode,
 } from "./interact";
 import {
   addChild,
@@ -41,7 +40,7 @@ import {
   setNodeTopic,
   updateNodeIcons,
   updateNodeStyle,
-  updateNodeTags
+  updateNodeTags,
 } from "./nodeOperation";
 import { createLink, hideLinkController, removeLink, selectLink, showLinkController } from "./linkOperation";
 import { LEFT, RIGHT, SIDE } from "./const";
@@ -115,7 +114,7 @@ function MindElixir({
   primaryNodeVerticalGap,
   mobileMenu,
   customFullscreenTrigger,
-  clickOnAttachment
+  clickOnAttachment,
 }) {
   vari.newTopicName = newTopicName;
   this.mindElixirBox = document.querySelector(el);
@@ -375,7 +374,7 @@ MindElixir.prototype = {
     this.layout();
     this.linkDiv();
     if (!this.overflowHidden) initMouseEvent(this);
-  }
+  },
 };
 // MindElixir.exportSvg = exportSvg
 // MindElixir.exportPng = exportPng
@@ -386,7 +385,6 @@ MindElixir.SIDE = SIDE;
  * @memberof MindElixir
  * @static
  */
-MindElixir.version = info.version;
 MindElixir.E = findEle;
 /**
  * @memberof MindElixir
@@ -406,15 +404,15 @@ MindElixir.new = topic => ({
     id: generateUUID(),
     topic: topic || "new topic",
     root: true,
-    children: []
+    children: [],
   },
-  linkData: {}
+  linkData: {},
 });
 MindElixir.newNode = ({ topic }) => {
   let id = generateUUID();
   return {
     id,
-    topic
+    topic,
     // selected: true,
     // new: true,
   };

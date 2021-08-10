@@ -8,7 +8,7 @@ export let findEle = (id, me) => {
   return scope.querySelector(`[data-nodeid=me${id}]`);
 };
 
-export let createGroup = function (node) {
+export let createGroup = function(node) {
   let grp = $d.createElement("GRP");
   let top = createTop(node);
   grp.appendChild(top);
@@ -22,7 +22,7 @@ export let createGroup = function (node) {
   return { grp, top };
 };
 
-let shapeTpc = function (tpc, nodeObj) {
+let shapeTpc = function(tpc, nodeObj) {
   // TODO allow to add online image
   if (nodeObj.style) {
     tpc.style.color = nodeObj.style.color;
@@ -44,7 +44,7 @@ let shapeTpc = function (tpc, nodeObj) {
   }
 };
 
-export let createTop = function (nodeObj) {
+export let createTop = function(nodeObj) {
   let top = $d.createElement("t");
   let tpc = createTopic(nodeObj);
   shapeTpc(tpc, nodeObj);
@@ -52,7 +52,7 @@ export let createTop = function (nodeObj) {
   return top;
 };
 
-export let createTopic = function (nodeObj) {
+export let createTopic = function(nodeObj) {
   let topic = $d.createElement("tpc");
   topic.nodeObj = nodeObj;
   topic.innerHTML = getNodeInnerHtml(nodeObj);
@@ -66,10 +66,16 @@ function getNodeInnerHtml(nodeObj) {
   const nodeLink = nodeObj.link;
   const nodeIssueId = nodeObj.issueId;
   const nodeDescription = nodeObj.description;
-  const nodeLinkHtml = nodeLink ? `<a class="attachment icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}" data-name="link" data-value="${nodeLink}"></a>` : null;
-  const nodeDescriptionHtml = nodeDescription ? `<span class="attachment icon-file-document"  title="${nodeDescription}" data-name="description" data-value="${nodeDescription}"></span>` : null;
+  const nodeLinkHtml = nodeLink
+    ? `<a class="attachment icon-link not-prevent"  href="${nodeLink}" target="_blank" title="${nodeLink}" data-name="link" data-value="${nodeLink}"></a>`
+    : null;
+  const nodeDescriptionHtml = nodeDescription
+    ? `<span class="attachment icon-file-document"  title="${nodeDescription}" data-name="description" data-value="${nodeDescription}"></span>`
+    : null;
   //TODO locales
-  const nodeIssueHtml = nodeIssueId ? `<a class="attachment icon-tracker" href="" title="Task id: ${nodeIssueId}" data-name="issueId" data-value="${nodeIssueId}"></a>` : null;
+  const nodeIssueHtml = nodeIssueId
+    ? `<a class="attachment icon-tracker" href="" title="Task id: ${nodeIssueId}" data-name="issueId" data-value="${nodeIssueId}"></a>`
+    : null;
   let nodeInnerHtml = nodeText;
   if (nodeLinkHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeLinkHtml}`;
   if (nodeDescriptionHtml) nodeInnerHtml = `${nodeInnerHtml} ${nodeDescriptionHtml}`;
@@ -145,7 +151,7 @@ export function createInputDiv(tpc) {
   });
 }
 
-export let createExpander = function (expanded) {
+export let createExpander = function(expanded) {
   let expander = $d.createElement("epd");
   // 包含未定义 expanded 的情况，未定义视为展开
   expander.innerHTML = expanded !== false ? "-" : "+";

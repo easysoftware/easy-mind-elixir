@@ -151,7 +151,7 @@ export default function(mind, option) {
         }
       },
       {
-        once: true
+        once: true,
       }
     );
   };

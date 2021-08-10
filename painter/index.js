@@ -68,19 +68,19 @@ function generateSvgDom(instance) {
     }
     let offset = 0;
     const isLeftBranch = primaryNode.className.includes("lhs");
-    if(isLeftBranch) {
+    if (isLeftBranch) {
       offset = (maxBranchDepthLeft - branchesDepth[i]) * NODE_GROUP_WIDTH;
     }
     const isRightBranch = primaryNode.className.includes("rhs");
-    if(isRightBranch) {
-      offset = (maxBranchDepthLeft - branchesDepth[i -1]) * NODE_GROUP_WIDTH;
+    if (isRightBranch) {
+      offset = (maxBranchDepthLeft - branchesDepth[i - 1]) * NODE_GROUP_WIDTH;
     }
     const indexOfMaxDepthRight = branchesDepthRight.indexOf(maxBranchDepthRight);
     const indexOfMaxDepthLeft = branchesDepthLeft.indexOf(maxBranchDepthLeft);
     if (indexOfMaxDepthLeft < i && isLeftBranch) {
       offset = 0;
     }
-    if (indexOfMaxDepthRight < i && indexOfMaxDepthLeft < (i - 1) && isRightBranch) {
+    if (indexOfMaxDepthRight < i && indexOfMaxDepthLeft < i - 1 && isRightBranch) {
       offset = 0;
     }
     svgContent += PrimaryToSvg(primaryNode, offset);
@@ -121,14 +121,13 @@ function RootToSvg() {
 
   let svg2nd = `<g transform='translate(${IMG_PADDING - maxLeft}, ${IMG_PADDING - maxTop})'>${svg2ndEle.innerHTML}</g>`;
   return (
-      svg2nd +
-      `<g id='root' transform='translate(${rootOffsetX + IMG_PADDING}, ${rootOffsetY + IMG_PADDING})'>
+    svg2nd +
+    `<g id='root' transform='translate(${rootOffsetX + IMG_PADDING}, ${rootOffsetY + IMG_PADDING})'>
       <rect x='${left}' y='${top}' rx='5px' ry='5px' width='${rect.width}' height='${
-          rect.height
-      }' style='fill: #00aaff;'></rect>
-      <text x='${left + 15}' y='${
-          top + 35
-      }' text-anchor='start' align='top' anchor='start' font-family='微软雅黑' font-size='25px' font-weight='normal' fill='#ffffff'>
+      rect.height
+    }' style='fill: #00aaff;'></rect>
+      <text x='${left + 15}' y='${top +
+      35}' text-anchor='start' align='top' anchor='start' font-family='微软雅黑' font-size='25px' font-weight='normal' fill='#ffffff'>
         ${nodeObj.topic}
       </text>
   </g>`
@@ -162,18 +161,18 @@ function PrimaryToSvg(primaryNode, offset = 0) {
     let tStyle = getComputedStyle(t);
     let topicOffsetLeft = left + parseInt(tStyle.paddingLeft) + parseInt(tpcStyle.paddingLeft);
     let topicOffsetTop =
-        top + parseInt(tStyle.paddingTop) + parseInt(tpcStyle.paddingTop) + parseInt(tpcStyle.fontSize);
+      top + parseInt(tStyle.paddingTop) + parseInt(tpcStyle.paddingTop) + parseInt(tpcStyle.fontSize);
     // style render
     let border = "";
     if (tpcStyle.borderWidth != "0px") {
       border = `<rect x='${left + 15}' y='${top}' rx='5px' ry='5px' width='${tpcRect.width}' height='${
-          tpcRect.height
+        tpcRect.height
       }' style='fill: rgba(0,0,0,0); stroke:#444;stroke-width:1px;'></rect>`;
     }
     let backgroundColor = "";
     if (tpcStyle.backgroundColor != "rgba(0, 0, 0, 0)") {
       backgroundColor = `<rect x='${left + 15}' y='${top}' rx='5px' ry='5px' width='${tpcRect.width}' height='${
-          tpcRect.height
+        tpcRect.height
       }' style='fill: ${tpcStyle.backgroundColor};'></rect>`;
     }
     // render tags
@@ -184,11 +183,11 @@ function PrimaryToSvg(primaryNode, offset = 0) {
         let tag = tagsEle[i];
         let tagRect = tag.getBoundingClientRect();
         tags += `<rect x='${topicOffsetLeft}' y='${topicOffsetTop + 4}' rx='5px' ry='5px' width='${
-            tagRect.width
+          tagRect.width
         }' height='${tagRect.height}' style='fill: #d6f0f8;'></rect>
-        <text font-family='微软雅黑' font-size='12px'  fill='#276f86' x='${topicOffsetLeft + 4}' y='${
-            topicOffsetTop + 4 + 12
-        }'>${tag.innerHTML}</text>`;
+        <text font-family='微软雅黑' font-size='12px'  fill='#276f86' x='${topicOffsetLeft + 4}' y='${topicOffsetTop +
+          4 +
+          12}'>${tag.innerHTML}</text>`;
       }
     }
     let icons = "";
@@ -243,7 +242,7 @@ function customLinkTransform() {
   for (let i = 0; i < customLinks.length; i++) {
     let customLink = customLinks[i].outerHTML;
     let cnt = 0;
-    let data = customLink.replace(/\d+(\.\d+)? /g, function (match) {
+    let data = customLink.replace(/\d+(\.\d+)? /g, function(match) {
       match = Number(match);
       let res;
       if (match < 256) {
@@ -265,7 +264,7 @@ function customLinkTransform() {
   return resLinks;
 }
 
-export let exportSvg = function (instance, fileName, download = true) {
+export let exportSvg = function(instance, fileName, download = true) {
   if (!instance) throw new Error("Mind-elixir instance is not presented. ---> exportSvg(instance, fileName)");
   initVar();
   $d = instance.container;
@@ -281,13 +280,13 @@ export let exportSvg = function (instance, fileName, download = true) {
   }
 };
 
-export let getContext = function (instance, fileName, download = true) {
+export let getContext = function(instance, fileName, download = true) {
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
   return ctx;
 };
 
-export let exportImage = async function (instance, fileName, imageType = "png", download = true) {
+export let exportImage = async function(instance, fileName, imageType = "png", download = true) {
   if (!instance) throw new Error("Mind-elixir instance is not presented. ---> exportSvg(instance, fileName)");
   initVar();
   $d = instance.container;
@@ -313,7 +312,7 @@ export let exportImage = async function (instance, fileName, imageType = "png", 
  * all branches.
  * @param {Object} mm - mind map elixir instance
  */
-let getOffsetData = function (mm) {
+let getOffsetData = function(mm) {
   const primaryNodesData = mm.getAllData().nodeData.children;
   let branchesDepthLeft = [];
   let branchesDepthRight = [];
@@ -331,7 +330,7 @@ let getOffsetData = function (mm) {
 };
 
 export const getJSONDepth = ({ children }) =>
-    1 + (children && children.length ? Math.max(...children.map(getJSONDepth)) : 0);
+  1 + (children && children.length ? Math.max(...children.map(getJSONDepth)) : 0);
 
 export default {
   exportSvg,

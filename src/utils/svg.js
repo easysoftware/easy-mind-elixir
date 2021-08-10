@@ -1,5 +1,5 @@
 let $d = document;
-export let createMainPath = function (d) {
+export let createMainPath = function(d) {
   let path = $d.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute("d", d);
   path.setAttribute("stroke", "#666");
@@ -8,13 +8,13 @@ export let createMainPath = function (d) {
   return path;
 };
 
-export let createLinkSvg = function (klass) {
+export let createLinkSvg = function(klass) {
   let svg = $d.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("class", klass);
   return svg;
 };
 
-export let createLine = function (x1, y1, x2, y2) {
+export let createLine = function(x1, y1, x2, y2) {
   let line = $d.createElementNS("http://www.w3.org/2000/svg", "line");
   line.setAttribute("x1", x1);
   line.setAttribute("y1", y1);
@@ -26,7 +26,7 @@ export let createLine = function (x1, y1, x2, y2) {
   return line;
 };
 
-export let createPath = function (d) {
+export let createPath = function(d) {
   let path = $d.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute("d", d);
   path.setAttribute("stroke", "#555");
@@ -38,7 +38,7 @@ export let createPath = function (d) {
   return path;
 };
 
-export let createSvgGroup = function (d, arrowd) {
+export let createSvgGroup = function(d, arrowd) {
   let g = $d.createElementNS("http://www.w3.org/2000/svg", "g");
   let path = $d.createElementNS("http://www.w3.org/2000/svg", "path");
   let arrow = $d.createElementNS("http://www.w3.org/2000/svg", "path");

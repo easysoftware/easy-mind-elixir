@@ -72,9 +72,8 @@ function RootToSvg() {
       <rect x="${left}" y="${top}" rx="5px" ry="5px" width="${rect.width}" height="${
       rect.height
     }" style="fill: #00aaff;"></rect>
-      <text x="${left + 15}" y="${
-      top + 35
-    }" text-anchor="start" align="top" anchor="start" font-family="微软雅黑" font-size="25px" font-weight="normal" fill="#ffffff">
+      <text x="${left + 15}" y="${top +
+      35}" text-anchor="start" align="top" anchor="start" font-family="微软雅黑" font-size="25px" font-weight="normal" fill="#ffffff">
         ${nodeObj.topic}
       </text>
   </g>`
@@ -129,9 +128,9 @@ function PrimaryToSvg(primaryNode) {
         tags += `<rect x="${topicOffsetLeft}" y="${topicOffsetTop + 4}" rx="5px" ry="5px" width="${
           tagRect.width
         }" height="${tagRect.height}" style="fill: #d6f0f8;"></rect>
-        <text font-family="微软雅黑" font-size="12px"  fill="#276f86" x="${topicOffsetLeft + 4}" y="${
-          topicOffsetTop + 4 + 12
-        }">${tag.innerHTML}</text>`;
+        <text font-family="微软雅黑" font-size="12px"  fill="#276f86" x="${topicOffsetLeft + 4}" y="${topicOffsetTop +
+          4 +
+          12}">${tag.innerHTML}</text>`;
       }
     }
     let icons = "";
@@ -161,7 +160,7 @@ function PrimaryToSvg(primaryNode) {
   return svg;
 }
 
-export let exportSvg = function () {
+export let exportSvg = function() {
   let svgFile = generateSvgDom();
   let dlUrl = URL.createObjectURL(new Blob([head + svgFile.outerHTML.replace(/&nbsp;/g, " ")]));
   let a = document.createElement("a");
@@ -170,7 +169,7 @@ export let exportSvg = function () {
   a.click();
 };
 
-export let exportPng = async function () {
+export let exportPng = async function() {
   let svgFile = generateSvgDom();
   const canvas = document.createElement("canvas");
   canvas.style.display = "none";

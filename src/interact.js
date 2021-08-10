@@ -113,7 +113,7 @@ export let selectParent = function() {
 export let getAllDataString = function() {
   let data = {
     nodeData: getData(this),
-    linkData: this.linkData
+    linkData: this.linkData,
   };
   return JSON.stringify(data, (k, v) => {
     if (k === "parent") return undefined;
@@ -133,7 +133,7 @@ export let getAllDataString = function() {
 export let getAllData = function() {
   let data = {
     nodeData: getData(this),
-    linkData: this.linkData
+    linkData: this.linkData,
   };
   return JSON.parse(
     JSON.stringify(data, (k, v) => {

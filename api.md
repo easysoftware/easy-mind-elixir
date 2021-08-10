@@ -4,17 +4,17 @@
 
 **Kind**: global class
 
-* [Mind](#Mind)
-    * _instance_
-        * [.#insertSibling(el)](#Mind+insertSibling)
-        * [.#addChild(el)](#Mind+addChild)
-        * [.#moveUpNode(el)](#Mind+moveUpNode)
-        * [.#moveDownNode(el)](#Mind+moveDownNode)
-        * [.#removeNode(el)](#Mind+removeNode)
-        * [.#moveNode(from, to)](#Mind+moveNode)
-        * [.#beginEdit(el)](#Mind+beginEdit)
-    * _static_
-        * [..E(id)](#Mind.E) ⇒ <code>element</code>
+- [Mind](#Mind)
+  - _instance_
+    - [.#insertSibling(el)](#Mind+insertSibling)
+    - [.#addChild(el)](#Mind+addChild)
+    - [.#moveUpNode(el)](#Mind+moveUpNode)
+    - [.#moveDownNode(el)](#Mind+moveDownNode)
+    - [.#removeNode(el)](#Mind+removeNode)
+    - [.#moveNode(from, to)](#Mind+moveNode)
+    - [.#beginEdit(el)](#Mind+beginEdit)
+  - _static_
+    - [..E(id)](#Mind.E) ⇒ <code>element</code>
 
 <a name="Mind+insertSibling"></a>
 
@@ -24,9 +24,9 @@ Create a sibling node.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind+addChild"></a>
 
@@ -36,9 +36,9 @@ Create a child node.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind+moveUpNode"></a>
 
@@ -48,9 +48,9 @@ Move the target node up.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind+moveDownNode"></a>
 
@@ -60,9 +60,9 @@ Move the target node down.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind+removeNode"></a>
 
@@ -72,9 +72,9 @@ Remove the target node.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind+moveNode"></a>
 
@@ -84,10 +84,10 @@ Move the target node to another node (as child node).
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| from | <code>Object</code> | The target you want to move. |
-| to | <code>Object</code> | The target you want to move to. |
+| Param | Type                | Description                     |
+| ----- | ------------------- | ------------------------------- |
+| from  | <code>Object</code> | The target you want to move.    |
+| to    | <code>Object</code> | The target you want to move to. |
 
 <a name="Mind+beginEdit"></a>
 
@@ -97,9 +97,9 @@ Begin to edit the target node.
 
 **Kind**: instance method of [<code>Mind</code>](#Mind)
 
-| Param | Type | Description |
-| --- | --- | --- |
-| el | <code>Object</code> | Target element. |
+| Param | Type                | Description     |
+| ----- | ------------------- | --------------- |
+| el    | <code>Object</code> | Target element. |
 
 <a name="Mind.E"></a>
 
@@ -108,7 +108,6 @@ Begin to edit the target node.
 **Kind**: static method of [<code>Mind</code>](#Mind)  
 **Returns**: <code>element</code> - Target element.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| id | <code>string</code> | Node id. |
-
+| Param | Type                | Description |
+| ----- | ------------------- | ----------- |
+| id    | <code>string</code> | Node id.    |

@@ -2,11 +2,11 @@ export default function Bus() {
   this.handlers = {};
 }
 Bus.prototype = {
-  addListener: function (type, handler) {
+  addListener: function(type, handler) {
     if (typeof this.handlers[type] == "undefined") this.handlers[type] = [];
     this.handlers[type].push(handler);
   },
-  fire: function (type, payload) {
+  fire: function(type, payload) {
     if (this.handlers[type] instanceof Array) {
       var handlers = this.handlers[type];
       for (var i = 0; i < handlers.length; i++) {
@@ -14,7 +14,7 @@ Bus.prototype = {
       }
     }
   },
-  removeListener: function (type, handler) {
+  removeListener: function(type, handler) {
     if (!this.handlers[type]) return;
     var handlers = this.handlers[type];
     if (handler == undefined) {

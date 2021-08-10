@@ -1,4 +1,4 @@
-export default function (mind) {
+export default function(mind) {
   let key2func = {
     13: () => {
       // enter

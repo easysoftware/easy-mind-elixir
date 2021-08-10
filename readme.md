@@ -6,9 +6,9 @@ npm run publish
 
 { ...
 "dependencies": {
-"@easy/mind-elixir": "^X*", } ... }
+"@easy/mind-elixir": "^X\*", } ... }
 
-*learn x from https://nodes.easysoftware.com/
+\*learn x from https://nodes.easysoftware.com/
 
 # Install via console
 

@@ -27,7 +27,7 @@ export let addParentLink = (data, parent) => {
 
 export let throttle = (fn, wait) => {
   var pre = Date.now();
-  return function () {
+  return function() {
     var context = this;
     var args = arguments;
     var now = Date.now();
@@ -116,7 +116,12 @@ export function calcP4(toData, p3x, p3y) {
 }
 
 export function generateUUID() {
-  return (new Date().getTime().toString(16) + Math.random().toString(16).substr(2)).substr(2, 16);
+  return (
+    new Date().getTime().toString(16) +
+    Math.random()
+      .toString(16)
+      .substr(2)
+  ).substr(2, 16);
 }
 
 export function generateNewObj() {
@@ -278,7 +283,7 @@ export function dmhelper(dom) {
   this.lastY = null;
 }
 
-dmhelper.prototype.init = function (map, cb) {
+dmhelper.prototype.init = function(map, cb) {
   this.handleMouseMove = e => {
     e.stopPropagation();
     if (this.mousedown) {
@@ -308,14 +313,14 @@ dmhelper.prototype.init = function (map, cb) {
   this.dom.addEventListener("mousedown", this.handleMouseDown);
 };
 
-dmhelper.prototype.destory = function (map) {
+dmhelper.prototype.destory = function(map) {
   map.removeEventListener("mousemove", this.handleMouseMove);
   map.removeEventListener("mouseleave", this.handleClear);
   map.removeEventListener("mouseup", this.handleClear);
   this.dom.removeEventListener("mousedown", this.handleMouseDown);
 };
 
-dmhelper.prototype.clear = function () {
+dmhelper.prototype.clear = function() {
   this.mousedown = false;
   this.lastX = null;
   this.lastY = null;

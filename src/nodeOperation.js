@@ -20,7 +20,7 @@ let $d = document;
 /**
  * @namespace NodeOperation
  */
-export let updateNodeStyle = function (object) {
+export let updateNodeStyle = function(object) {
   if (!object.style) return;
   let nodeEle = findEle(object.id, this);
   let origin = {
@@ -41,7 +41,7 @@ export let updateNodeStyle = function (object) {
   });
 };
 
-export let updateNodeTags = function (object) {
+export let updateNodeTags = function(object) {
   if (!object.tags) return;
   let nodeEle = findEle(object.id);
   let tags = object.tags;
@@ -64,7 +64,7 @@ export let updateNodeTags = function (object) {
   });
 };
 
-export let updateNodeIcons = function (object) {
+export let updateNodeIcons = function(object) {
   if (!object.icons) return;
   let nodeEle = findEle(object.id);
   let icons = object.icons;
@@ -92,7 +92,7 @@ export let updateNodeIcons = function (object) {
   this.linkDiv();
 };
 
-export let updateNodeSvgChart = function () {
+export let updateNodeSvgChart = function() {
   // TODO
 };
 
@@ -107,7 +107,7 @@ export let updateNodeSvgChart = function () {
  * @example
  * insertSibling(E('bd4313fbac40284b'))
  */
-export let insertSibling = function (el, node) {
+export let insertSibling = function(el, node) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let nodeObj = nodeEle.nodeObj;
@@ -141,7 +141,7 @@ export let insertSibling = function (el, node) {
   });
 };
 
-export let insertBefore = function (el, node) {
+export let insertBefore = function(el, node) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let nodeObj = nodeEle.nodeObj;
@@ -185,7 +185,7 @@ export let insertBefore = function (el, node) {
  * @example
  * addChild(E('bd4313fbac40284b'))
  */
-export let addChild = function (el, node) {
+export let addChild = function(el, node) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let nodeObj = nodeEle.nodeObj;
@@ -241,7 +241,7 @@ export let addChild = function (el, node) {
  * @example
  * moveUpNode(E('bd4313fbac40284b'))
  */
-export let moveUpNode = function (el) {
+export let moveUpNode = function(el) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let grp = nodeEle.parentNode.parentNode;
@@ -266,7 +266,7 @@ export let moveUpNode = function (el) {
  * @example
  * moveDownNode(E('bd4313fbac40284b'))
  */
-export let moveDownNode = function (el) {
+export let moveDownNode = function(el) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let grp = nodeEle.parentNode.parentNode;
@@ -295,7 +295,7 @@ export let moveDownNode = function (el) {
  * @example
  * removeNode(E('bd4313fbac40284b'))
  */
-export let removeNode = function (el) {
+export let removeNode = function(el) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   let nodeObj = nodeEle.nodeObj;
@@ -352,7 +352,7 @@ export let removeNode = function (el) {
  * @example
  * moveNode(E('bd4313fbac402842'),E('bd4313fbac402839'))
  */
-export let moveNode = function (from, to) {
+export let moveNode = function(from, to) {
   let fromObj = from.nodeObj;
   let toObj = to.nodeObj;
   let originParentId = fromObj.parent.id;
@@ -402,7 +402,7 @@ export let moveNode = function (from, to) {
   });
 };
 
-export let moveNodeBefore = function (from, to) {
+export let moveNodeBefore = function(from, to) {
   let fromObj = from.nodeObj;
   let toObj = to.nodeObj;
   let originParentId = fromObj.parent.id;
@@ -421,7 +421,7 @@ export let moveNodeBefore = function (from, to) {
   });
 };
 
-export let moveNodeAfter = function (from, to) {
+export let moveNodeAfter = function(from, to) {
   let fromObj = from.nodeObj;
   let toObj = to.nodeObj;
   let originParentId = fromObj.parent.id;
@@ -450,13 +450,13 @@ export let moveNodeAfter = function (from, to) {
  * @example
  * beginEdit(E('bd4313fbac40284b'))
  */
-export let beginEdit = function (el) {
+export let beginEdit = function(el) {
   let nodeEle = el || this.currentNode;
   if (!nodeEle) return;
   this.createInputDiv(nodeEle);
 };
 
-export let setNodeTopic = function (tpc, topic) {
+export let setNodeTopic = function(tpc, topic) {
   tpc.childNodes[0].textContent = topic;
   tpc.nodeObj.topic = topic;
   this.linkDiv();

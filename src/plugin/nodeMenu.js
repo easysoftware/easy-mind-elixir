@@ -28,7 +28,7 @@ const colorList = [
   "#2ecc71",
 ];
 
-export default function (mind) {
+export default function(mind) {
   let locale = i18n[mind.locale] ? mind.locale : "en";
   let bgOrFont;
   let styleDiv = createDiv("nm-style", "style");
@@ -83,7 +83,7 @@ export default function (mind) {
 
   function clearSelect(klass, remove) {
     var elems = mind.container.querySelectorAll(klass);
-    [].forEach.call(elems, function (el) {
+    [].forEach.call(elems, function(el) {
       el.classList.remove(remove);
     });
   }
@@ -181,10 +181,10 @@ export default function (mind) {
     </svg>`;
     }
   };
-  mind.bus.addListener("unselectNode", function () {
+  mind.bus.addListener("unselectNode", function() {
     menuContainer.hidden = true;
   });
-  mind.bus.addListener("selectNode", function (nodeObj) {
+  mind.bus.addListener("selectNode", function(nodeObj) {
     menuContainer.hidden = false;
     clearSelect(".palette", "nmenu-selected");
     clearSelect(".size", "size-selected");
