@@ -24,7 +24,7 @@ import {
   selectPrevSibling,
   setLocale,
   toCenter,
-  unselectNode,
+  unselectNode
 } from "./interact";
 import {
   addChild,
@@ -41,7 +41,7 @@ import {
   setNodeTopic,
   updateNodeIcons,
   updateNodeStyle,
-  updateNodeTags,
+  updateNodeTags
 } from "./nodeOperation";
 import { createLink, hideLinkController, removeLink, selectLink, showLinkController } from "./linkOperation";
 import { LEFT, RIGHT, SIDE } from "./const";
@@ -168,7 +168,7 @@ function MindElixir({
     }
   });
 
-  this.undo = function () {
+  this.undo = function() {
     let operation = this.history.pop();
     if (!operation) return;
     this.isUndo = true;
@@ -194,54 +194,74 @@ MindElixir.prototype = {
   addParentLink,
   getObjById,
   // node operation
-  insertSibling: async function (...args) {
-    if (!this.before.insertSibling || (await this.before.insertSibling.apply(this, args))) {
-      insertSibling.apply(this, args);
+  insertSibling: async function(...args) {
+    if (this.editable) {
+      if (!this.before.insertSibling || (await this.before.insertSibling.apply(this, args))) {
+        insertSibling.apply(this, args);
+      }
     }
   },
-  insertBefore: async function (...args) {
-    if (!this.before.insertBefore || (await this.before.insertBefore.apply(this, args))) {
-      insertBefore.apply(this, args);
+  insertBefore: async function(...args) {
+    if (this.editable) {
+      if (!this.before.insertBefore || (await this.before.insertBefore.apply(this, args))) {
+        insertBefore.apply(this, args);
+      }
     }
   },
-  addChild: async function (...args) {
-    if (!this.before.addChild || (await this.before.addChild.apply(this, args))) {
-      addChild.apply(this, args);
+  addChild: async function(...args) {
+    if (this.editable) {
+      if (!this.before.addChild || (await this.before.addChild.apply(this, args))) {
+        addChild.apply(this, args);
+      }
     }
   },
-  moveNode: async function (...args) {
-    if (!this.before.moveNode || (await this.before.moveNode.apply(this, args))) {
-      moveNode.apply(this, args);
+  moveNode: async function(...args) {
+    if (this.editable) {
+      if (!this.before.moveNode || (await this.before.moveNode.apply(this, args))) {
+        moveNode.apply(this, args);
+      }
     }
   },
-  removeNode: async function (...args) {
-    if (!this.before.removeNode || (await this.before.removeNode.apply(this, args))) {
-      removeNode.apply(this, args);
+  removeNode: async function(...args) {
+    if (this.editable) {
+      if (!this.before.removeNode || (await this.before.removeNode.apply(this, args))) {
+        removeNode.apply(this, args);
+      }
     }
   },
-  moveUpNode: async function (...args) {
-    if (!this.before.moveUpNode || (await this.before.moveUpNode.apply(this, args))) {
-      moveUpNode.apply(this, args);
+  moveUpNode: async function(...args) {
+    if (this.editable) {
+      if (!this.before.moveUpNode || (await this.before.moveUpNode.apply(this, args))) {
+        moveUpNode.apply(this, args);
+      }
     }
   },
-  moveDownNode: async function (...args) {
-    if (!this.before.moveDownNode || (await this.before.moveDownNode.apply(this, args))) {
-      moveDownNode.apply(this, args);
+  moveDownNode: async function(...args) {
+    if (this.editable) {
+      if (!this.before.moveDownNode || (await this.before.moveDownNode.apply(this, args))) {
+        moveDownNode.apply(this, args);
+      }
     }
   },
-  beginEdit: async function (...args) {
-    if (!this.before.beginEdit || (await this.before.beginEdit.apply(this, args))) {
-      beginEdit.apply(this, args);
+  beginEdit: async function(...args) {
+    if (this.editable) {
+      if (!this.before.beginEdit || (await this.before.beginEdit.apply(this, args))) {
+        beginEdit.apply(this, args);
+      }
     }
   },
-  moveNodeBefore: async function (...args) {
-    if (!this.before.moveNodeBefore || (await this.before.moveNodeBefore.apply(this, args))) {
-      moveNodeBefore.apply(this, args);
+  moveNodeBefore: async function(...args) {
+    if (this.editable) {
+      if (!this.before.moveNodeBefore || (await this.before.moveNodeBefore.apply(this, args))) {
+        moveNodeBefore.apply(this, args);
+      }
     }
   },
-  moveNodeAfter: async function (...args) {
-    if (!this.before.moveNodeAfter || (await this.before.moveNodeAfter.apply(this, args))) {
-      moveNodeAfter.apply(this, args);
+  moveNodeAfter: async function(...args) {
+    if (this.editable) {
+      if (!this.before.moveNodeAfter || (await this.before.moveNodeAfter.apply(this, args))) {
+        moveNodeAfter.apply(this, args);
+      }
     }
   },
   updateNodeStyle,
@@ -278,11 +298,14 @@ MindElixir.prototype = {
   initSide,
   setLocale,
   enableEdit,
-  disableEdit,
+  disableEdit: function() {
+    unselectNode.apply(this);
+    disableEdit.apply(this);
+  },
   expandNode,
   refresh,
 
-  init: function () {
+  init: function() {
     /**
      * @function
      * @global
@@ -298,7 +321,9 @@ MindElixir.prototype = {
 
     this.container = $d.createElement("div"); // map container
     this.container.className = "map-container";
-
+    if (!this.editable) {
+      this.container.classList.add("locked");
+    }
     if (this.overflowHidden) this.container.style.overflow = "hidden";
 
     this.map = $d.createElement("div"); // map-canvas Element
@@ -350,7 +375,7 @@ MindElixir.prototype = {
     this.layout();
     this.linkDiv();
     if (!this.overflowHidden) initMouseEvent(this);
-  },
+  }
 };
 // MindElixir.exportSvg = exportSvg
 // MindElixir.exportPng = exportPng
@@ -381,15 +406,15 @@ MindElixir.new = topic => ({
     id: generateUUID(),
     topic: topic || "new topic",
     root: true,
-    children: [],
+    children: []
   },
-  linkData: {},
+  linkData: {}
 });
 MindElixir.newNode = ({ topic }) => {
   let id = generateUUID();
   return {
     id,
-    topic,
+    topic
     // selected: true,
     // new: true,
   };

@@ -1,6 +1,6 @@
 import i18n from "../i18n";
 
-export default function (mind, option) {
+export default function(mind, option) {
   let createTips = words => {
     let div = document.createElement("div");
     div.innerHTML = words;
@@ -55,8 +55,9 @@ export default function (mind, option) {
 
   mind.container.append(menuContainer);
   let isRoot = true;
-  mind.container.oncontextmenu = function (e) {
+  mind.container.oncontextmenu = function(e) {
     e.preventDefault();
+    if (!mind.editable) return;
     let target = e.target;
     if (target.tagName === "TPC") {
       if (target.parentElement.tagName === "ROOT") {
@@ -150,7 +151,7 @@ export default function (mind, option) {
         }
       },
       {
-        once: true,
+        once: true
       }
     );
   };

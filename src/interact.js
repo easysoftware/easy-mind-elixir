@@ -1,4 +1,5 @@
 import { findEle } from "./utils/dom";
+import { addToolBarLockContainer, removeToolBarLockContainer } from "./plugin/toolBar";
 
 /**
  * @namespace MapInteraction
@@ -15,7 +16,7 @@ function getData(instance) {
  * @description Select a node and add solid border to it.
  * @param {TargetElement} el - Target element return by E('...'), default value: currentTarget.
  */
-export let selectNode = function (targetElement, isNewNode) {
+export let selectNode = function(targetElement, isNewNode) {
   if (!targetElement) return;
   if (typeof targetElement === "string") {
     return this.selectNode(findEle(targetElement));
@@ -29,14 +30,14 @@ export let selectNode = function (targetElement, isNewNode) {
     this.bus.fire("selectNode", targetElement.nodeObj);
   }
 };
-export let unselectNode = function () {
+export let unselectNode = function() {
   if (this.currentNode) {
     this.currentNode.className = "";
   }
   this.currentNode = null;
   this.bus.fire("unselectNode");
 };
-export let selectNextSibling = function () {
+export let selectNextSibling = function() {
   if (!this.currentNode || this.currentNode.dataset.nodeid === "meroot") return;
 
   let sibling = this.currentNode.parentElement.parentElement.nextSibling;
@@ -59,7 +60,7 @@ export let selectNextSibling = function () {
   target.scrollIntoViewIfNeeded();
   return true;
 };
-export let selectPrevSibling = function () {
+export let selectPrevSibling = function() {
   if (!this.currentNode || this.currentNode.dataset.nodeid === "meroot") return;
 
   let sibling = this.currentNode.parentElement.parentElement.previousSibling;
@@ -82,7 +83,7 @@ export let selectPrevSibling = function () {
   target.scrollIntoViewIfNeeded();
   return true;
 };
-export let selectFirstChild = function () {
+export let selectFirstChild = function() {
   if (!this.currentNode) return;
   let children = this.currentNode.parentElement.nextSibling;
   if (children && children.firstChild) {
@@ -91,7 +92,7 @@ export let selectFirstChild = function () {
     target.scrollIntoViewIfNeeded();
   }
 };
-export let selectParent = function () {
+export let selectParent = function() {
   if (!this.currentNode || this.currentNode.dataset.nodeid === "meroot") return;
 
   let parent = this.currentNode.parentElement.parentElement.parentElement.previousSibling;
@@ -109,10 +110,10 @@ export let selectParent = function () {
  * @memberof MapInteraction
  * @return {string}
  */
-export let getAllDataString = function () {
+export let getAllDataString = function() {
   let data = {
     nodeData: getData(this),
-    linkData: this.linkData,
+    linkData: this.linkData
   };
   return JSON.stringify(data, (k, v) => {
     if (k === "parent") return undefined;
@@ -129,10 +130,10 @@ export let getAllDataString = function () {
  * @memberof MapInteraction
  * @return {Object}
  */
-export let getAllData = function () {
+export let getAllData = function() {
   let data = {
     nodeData: getData(this),
-    linkData: this.linkData,
+    linkData: this.linkData
   };
   return JSON.parse(
     JSON.stringify(data, (k, v) => {
@@ -152,7 +153,7 @@ export let getAllData = function () {
  * @memberof MapInteraction
  * @return {Object}
  */
-export let getAllDataMd = function () {
+export let getAllDataMd = function() {
   let data = getData(this);
   let mdString = "# " + data.topic + "\n\n";
 
@@ -179,7 +180,9 @@ export let getAllDataMd = function () {
  * @name enableEdit
  * @memberof MapInteraction
  */
-export let enableEdit = function () {
+export let enableEdit = function() {
+  this.container.classList.remove("locked");
+  removeToolBarLockContainer(this);
   this.editable = true;
 };
 
@@ -189,7 +192,9 @@ export let enableEdit = function () {
  * @name disableEdit
  * @memberof MapInteraction
  */
-export let disableEdit = function () {
+export let disableEdit = function() {
+  this.container.classList.add("locked");
+  addToolBarLockContainer(this);
   this.editable = false;
 };
 
@@ -201,7 +206,7 @@ export let disableEdit = function () {
  * @memberof MapInteraction
  * @param {number}
  */
-export let scale = function (scaleVal) {
+export let scale = function(scaleVal) {
   this.scaleVal = scaleVal;
   this.map.style.transform = "scale(" + scaleVal + ")";
 };
@@ -212,10 +217,10 @@ export let scale = function (scaleVal) {
  * @description Reset position of the map to center.
  * @memberof MapInteraction
  */
-export let toCenter = function () {
+export let toCenter = function() {
   this.container.scrollTo(10000 - this.container.offsetWidth / 2, 10000 - this.container.offsetHeight / 2);
 };
-export let install = function (plugin) {
+export let install = function(plugin) {
   plugin(this);
 };
 /**
@@ -226,7 +231,7 @@ export let install = function (plugin) {
  * @memberof MapInteraction
  * @param {TargetElement} el - Target element return by E('...'), default value: currentTarget.
  */
-export let focusNode = function (tpcEl) {
+export let focusNode = function(tpcEl) {
   if (tpcEl.nodeObj.root) return;
   if (this.tempDir === null) {
     this.tempDir = this.direction;
@@ -246,7 +251,7 @@ export let focusNode = function (tpcEl) {
  * @description Exit focus mode.
  * @memberof MapInteraction
  */
-export let cancelFocus = function () {
+export let cancelFocus = function() {
   this.isFocusMode = false;
   if (this.tempDir !== null) {
     delete this.nodeData.root;
@@ -263,7 +268,7 @@ export let cancelFocus = function () {
  * @description Child nodes will distribute on the left side of the root node.
  * @memberof MapInteraction
  */
-export let initLeft = function () {
+export let initLeft = function() {
   this.direction = 0;
   this.init();
 };
@@ -274,7 +279,7 @@ export let initLeft = function () {
  * @description Child nodes will distribute on the right side of the root node.
  * @memberof MapInteraction
  */
-export let initRight = function () {
+export let initRight = function() {
   this.direction = 1;
   this.init();
 };
@@ -285,7 +290,7 @@ export let initRight = function () {
  * @description Child nodes will distribute on both left and right side of the root node.
  * @memberof MapInteraction
  */
-export let initSide = function () {
+export let initSide = function() {
   this.direction = 2;
   this.init();
 };
@@ -296,12 +301,12 @@ export let initSide = function () {
  * @name setLocale
  * @memberof MapInteraction
  */
-export let setLocale = function (locale) {
+export let setLocale = function(locale) {
   this.locale = locale;
   this.init();
 };
 
-export let expandNode = function (el, isExpand) {
+export let expandNode = function(el, isExpand) {
   let node = el.nodeObj;
   if (typeof isExpand === "boolean") {
     node.expanded = isExpand;
@@ -322,7 +327,7 @@ export let expandNode = function (el, isExpand) {
  * @description Refresh mind map, you can use it after modified `this.nodeData`
  * @memberof MapInteraction
  */
-export let refresh = function () {
+export let refresh = function() {
   // create dom element for every nodes
   this.layout();
   // generate links between nodes
